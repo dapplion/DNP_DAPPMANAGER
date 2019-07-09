@@ -5,6 +5,10 @@
  */
 
 module.exports = {
+  // TEMP
+  fileBrowserLs: require("./fileBrowserLs"),
+  fileBrowserGetWorkingDir: require("./fileBrowserGetWorkingDir"),
+  // ALL
   backupGet: require("./backupGet"),
   backupRestore: require("./backupRestore"),
   changeIpfsTimeout: require("./changeIpfsTimeout"),
