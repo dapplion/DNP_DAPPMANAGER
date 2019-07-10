@@ -2,10 +2,7 @@ const shell = require("utils/shell");
 const parseLsOutput = require("utils/parseLsOutput");
 
 /**
- * Cleans the cache files of the DAPPMANAGER:
- * - local DB
- * - user action logs
- * - temp transfer folder
+ * Executes and parses a `ls` command on the specified path
  *
  * @param {string} containerName "DAppNodePackage-ropsten.dnp.dappnode.eth"
  * @param {string} path

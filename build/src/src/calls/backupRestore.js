@@ -17,11 +17,11 @@ const tempTransferDir = params.TEMP_TRANSFER_DIR;
  * Restore a previous backup of a DNP, from the dataUri provided by the user
  *
  * @param {string} id DNP .eth name
- * @param {string} dataUri = "data:application/zip;base64,UEsDBBQAAAg..."
  * @param {array} backup [
  *   { name: "config", path: "/usr/.raiden/config" },
  *   { name: "keystore", path: "/usr/.raiden/secret/keystore" }
  * ]
+ * @param {string} fileId = "64020f6e8d2d02aa2324dab9cd68a8ccb186e192232814f79f35d4c2fbf2d1cc"
  */
 const backupRestore = async ({ id, backup, fileId }) => {
   if (!id) throw Error("Argument id must be defined");
