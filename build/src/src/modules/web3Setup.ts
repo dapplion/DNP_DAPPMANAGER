@@ -1,5 +1,6 @@
+import In3Client from "in3";
 import Web3 from "web3";
-import params from "../params";
+//import params from "../params";
 import Logs from "../logs";
 const logs = Logs(module);
 
@@ -7,19 +8,25 @@ const logs = Logs(module);
 
 // Web3 does not accept a string as a provider
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const WEB3_HOST: any = params.WEB3_HOST;
+//const WEB3_HOST: any = params.WEB3_HOST;
 
-if (WEB3_HOST === undefined || WEB3_HOST === null)
-  throw Error("WEB3_HOST is needed to connect to ethchain but it's undefined");
-
-const web3 = process.env.TEST ? ({} as Web3) : new Web3(WEB3_HOST);
+const web3 = process.env.TEST
+  ? ({} as Web3)
+  : new Web3(
+      new In3Client({
+        proof: "standard",
+        signatureCount: 1,
+        requestCount: 2,
+        chainId: "mainnet"
+      }).createWeb3Provider()
+    );
 
 if (!process.env.TEST) {
-  logs.info(`Web3 connection to: ${WEB3_HOST}`);
+  logs.info(`Web3 connection to in3`);
   setInterval(() => {
     web3.eth.net.isListening().catch((e: Error) => {
-      logs.error(`Web3 connection error to ${WEB3_HOST}: ${e.message}`);
-      web3.setProvider(WEB3_HOST);
+      logs.error(`Web3 connection error to in3: ${e.message}`);
+      //web3.setProvider(  );
     });
   }, 10000);
 }
